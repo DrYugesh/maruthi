@@ -1,0 +1,246 @@
+body {
+  font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
+  text-align: center;
+  padding: 50px;
+  background: #d9d9d9; /* Light cement color */
+  color: #ecf0f1;
+  position: relative;
+  margin: 0;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  background: linear-gradient(145deg, #12467F, #0d2a4a);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.container:hover {
+  transform: rotateX(1deg) rotateY(1deg) translateZ(20px);
+}
+
+h1, h2 {
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+@keyframes logoSpin {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.2); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+.logo {
+  width: 80px; /* Slightly increased size of the logo */
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.logo:hover {
+  animation: logoSpin 1.5s ease-in-out infinite;
+}
+
+@keyframes buttonReflection {
+  0% { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.buttons button, .back-button {
+  position: relative;
+  overflow: hidden;
+  padding: 15px 30px; /* Increased padding for larger buttons */
+  font-size: 28px; /* Increased font size for better visibility */
+  margin: 10px;
+  background: linear-gradient(45deg, #3b82f6, #6366f1);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+}
+
+.appointments-container .buttons button, 
+.appointments-container .back-button {
+  padding: 20px 40px; /* Larger padding for appointment form buttons */
+  font-size: 30px; /* Larger font size for better visibility */
+}
+
+.buttons button::after, .back-button::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.3) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  transform: rotate(30deg);
+  animation: buttonReflection 3s infinite linear;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.buttons button:hover::after, .back-button:hover::after {
+  opacity: 1;
+}
+
+.buttons button:hover, .back-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.6);
+  background: linear-gradient(45deg, #6366f1, #3b82f6);
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px) rotateY(90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) rotateY(0);
+  }
+}
+
+.buttons {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 80px;
+  left: 20px;
+  background: rgba(71, 85, 105, 0.95);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  backdrop-filter: blur(10px);
+  animation: slideIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-style: preserve-3d;
+}
+
+.appointment-tab {
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.appointment-tab:hover {
+  transform: rotateX(10deg) translateZ(10px);
+}
+
+@keyframes cardAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) rotateY(-30deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotateY(0);
+  }
+}
+
+.appointment-details {
+  animation: cardAppear 0.6s ease-out;
+  transform-style: preserve-3d;
+}
+
+input, textarea, select {
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  background: rgba(30, 41, 59, 0.8);
+  backdrop-filter: blur(5px);
+  font-size: 18px; /* Increased font size for inputs and textarea */
+  padding: 15px; /* Increased padding for better usability */
+  background-color: #D3D3D3; /* Light gray background for input boxes */
+  color: black; /* Black text inside input boxes */
+  margin-bottom: 15px; /* Add space between form elements */
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #3b82f6;
+  transform: scale(1.02);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+}
+
+label {
+  font-size: 18px; /* Increased font size for labels */
+}
+
+.radio-group {
+  margin-bottom: 15px; /* Add space below radio groups */
+}
+
+.radio-group label {
+  font-size: 18px; /* Increased font size for radio button labels */
+}
+
+.radio-group input[type="radio"] {
+  appearance: auto; /* Allow default browser styling for better compatibility */
+  width: 25px; /* Increased size of radio buttons */
+  height: 25px;
+  border: 2px solid #3b82f6;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  margin-right: 5px; /* Add spacing between the radio button and label */
+}
+
+.radio-group input[type="radio"]:checked {
+  background: radial-gradient(circle, #3b82f6 40%, transparent 50%);
+  transform: scale(1.2);
+}
+
+/* Glassmorphism effect for alerts */
+.alert {
+  background: rgba(71, 85, 105, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.edit-btn, .delete-btn {
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.edit-btn:hover {
+  transform: rotateY(10deg) translateZ(5px);
+}
+
+.delete-btn:hover {
+  transform: rotateY(-10deg) translateZ(5px);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.back-button {
+  animation: float 3s ease-in-out infinite;
+}
+
+button {
+  margin-top: 15px; /* Add space above buttons */
+}
+
+/* Add 3D transition for form elements */
+.form-container {
+  perspective: 1000px;
+}
+
+.form-container form {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.form-container form:hover {
+  transform: rotateY(5deg);
+}
